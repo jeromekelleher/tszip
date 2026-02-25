@@ -31,9 +31,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4.6.1
         with:
-          name: artifacts
           path: dist
-
 
   publish:
     runs-on: ubuntu-24.04
@@ -49,7 +47,7 @@ jobs:
           mkdir dist
           cp */*.{whl,gz} dist/.
       - name: Publish distribution to Test PyPI
-        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        if: github.event_name == 'push' && github.branch_name == 'test-publish')
         uses: pypa/gh-action-pypi-publish@v1.13.0
         with:
           repository_url: https://test.pypi.org/legacy/
