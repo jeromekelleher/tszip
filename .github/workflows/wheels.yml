@@ -45,6 +45,10 @@ jobs:
         # working-directory: ${{ inputs.pyproject-directory }}
         uses: actions/download-artifact@v4.2.0
 
+      - name: Show artifacts
+        # working-directory: ${{ inputs.pyproject-directory }}
+        run: ls -lh
+
       - name: Publish distribution to Test PyPI
         # working-directory: ${{ inputs.pyproject-directory }}
         if: github.event_name == 'push' && github.ref_name == 'test-publish'
